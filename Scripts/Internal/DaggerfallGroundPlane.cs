@@ -65,7 +65,7 @@ namespace DaggerfallWorkshop
             // Assign new season
             summary.archive = archive;
             summary.season = season;
-            renderer.material = material;
+            GetComponent<Renderer>().material = material;
         }
 
         /// <summary>

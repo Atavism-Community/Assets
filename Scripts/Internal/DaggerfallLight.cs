@@ -49,7 +49,7 @@ namespace DaggerfallWorkshop
             // Restart animation coroutine if not running
             if (restartAnims)
             {
-                if (light != null && Animate)
+                if (GetComponent<Light>() != null && Animate)
                     StartCoroutine(AnimateLight());
                 restartAnims = false;
             }
@@ -59,13 +59,13 @@ namespace DaggerfallWorkshop
                 return;
 
             // Handle automated light enable/disable
-            if (dfUnity.Option_AutomateCityLights && light)
+            if (dfUnity.Option_AutomateCityLights && GetComponent<Light>())
             {
                 // Only change if day/night flag changes
                 if (lastCityLightsFlag != dfUnity.WorldTime.CityLightsOn)
                 {
                     // Set light
-                    light.enabled = dfUnity.WorldTime.CityLightsOn;
+                    GetComponent<Light>().enabled = dfUnity.WorldTime.CityLightsOn;
                     lastCityLightsFlag = dfUnity.WorldTime.CityLightsOn;
                 }
             }
@@ -75,22 +75,22 @@ namespace DaggerfallWorkshop
 
         IEnumerator AnimateLight()
         {
-            startRange = light.range;
+            startRange = GetComponent<Light>().range;
 
             while (Animate)
             {
                 if (stepping)
                 {
-                    if (targetRange <= light.range)
+                    if (targetRange <= GetComponent<Light>().range)
                     {
-                        light.range -= Speed;
-                        if (light.range <= targetRange)
+                        GetComponent<Light>().range -= Speed;
+                        if (GetComponent<Light>().range <= targetRange)
                             stepping = false;
                     }
                     else
                     {
-                        light.range += Speed;
-                        if (light.range >= targetRange)
+                        GetComponent<Light>().range += Speed;
+                        if (GetComponent<Light>().range >= targetRange)
                             stepping = false;
                     }
                 }
@@ -104,7 +104,7 @@ namespace DaggerfallWorkshop
                 yield return new WaitForSeconds(1f / FramesPerSecond);
             }
 
-            light.range = startRange;
+            GetComponent<Light>().range = startRange;
         }
 
         private bool ReadyCheck()

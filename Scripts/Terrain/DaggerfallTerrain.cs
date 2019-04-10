@@ -240,7 +240,7 @@ namespace DaggerfallWorkshop
 
                 // Apply terrain data
                 terrain.terrainData = terrainData;
-                (terrain.collider as TerrainCollider).terrainData = terrainData;
+                (terrain.GetComponent<Collider>() as TerrainCollider).terrainData = terrainData;
                 terrain.basemapDistance = basemapDistance;
             }
 

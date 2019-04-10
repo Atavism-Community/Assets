@@ -178,7 +178,7 @@ namespace DaggerfallWorkshop
             if (midiSynthesizer == null)
             {
                 // Get number of channels
-                if (AudioSettings.driverCaps.ToString() == "Stereo")
+                if (AudioSettings.driverCapabilities.ToString() == "Stereo")
                     channels = 2;
                 else
                     channels = 1;

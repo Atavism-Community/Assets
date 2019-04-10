@@ -243,7 +243,7 @@ namespace DaggerfallWorkshop
             if (mesh)
             {
                 meshFilter.sharedMesh = mesh;
-                renderer.sharedMaterial = material;
+                GetComponent<Renderer>().sharedMaterial = material;
             }
             if (oldMesh)
             {

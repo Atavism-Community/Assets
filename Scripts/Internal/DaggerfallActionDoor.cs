@@ -64,7 +64,7 @@ namespace DaggerfallWorkshop
             if (!isOpen)
             {
                 // Play bash sound if flagged and ready
-                if (PlaySounds && BashSound > 0 && audio)
+                if (PlaySounds && BashSound > 0 && GetComponent<AudioSource>())
                 {
                     DaggerfallAudioSource dfAudioSource = GetComponent<DaggerfallAudioSource>();
                     dfAudioSource.PlayOneShot(BashSound);
@@ -109,7 +109,7 @@ namespace DaggerfallWorkshop
             if (((IsLocked || IsMagicallyHeld) && !ignoreLocks) || isOpen || isMoving)
             {
                 // Play open sound if flagged and ready
-                if (PlaySounds && LockedSound > 0 && duration > 0 && audio)
+                if (PlaySounds && LockedSound > 0 && duration > 0 && GetComponent<AudioSource>())
                 {
                     DaggerfallAudioSource dfAudioSource = GetComponent<DaggerfallAudioSource>();
                     dfAudioSource.PlayOneShot(LockedSound);
@@ -129,11 +129,11 @@ namespace DaggerfallWorkshop
             isMoving = true;
 
             // Set collider to trigger only
-            if (DisableColliderWhenOpen && collider)
-                collider.isTrigger = true;
+            if (DisableColliderWhenOpen && GetComponent<Collider>())
+                GetComponent<Collider>().isTrigger = true;
 
             // Play open sound if flagged and ready
-            if (PlaySounds && OpenSound > 0 && duration > 0 && audio)
+            if (PlaySounds && OpenSound > 0 && duration > 0 && GetComponent<AudioSource>())
             {
                 DaggerfallAudioSource dfAudioSource = GetComponent<DaggerfallAudioSource>();
                 dfAudioSource.PlayOneShot(OpenSound);
@@ -173,15 +173,15 @@ namespace DaggerfallWorkshop
             isMoving = false;
 
             // Play close sound if flagged and ready
-            if (PlaySounds && CloseSound > 0 && duration > 0 && audio)
+            if (PlaySounds && CloseSound > 0 && duration > 0 && GetComponent<AudioSource>())
             {
                 DaggerfallAudioSource dfAudioSource = GetComponent<DaggerfallAudioSource>();
                 dfAudioSource.PlayOneShot(CloseSound);
             }
 
             // Set collider back to a solid object
-            if (DisableColliderWhenOpen && collider)
-                collider.isTrigger = false;
+            if (DisableColliderWhenOpen && GetComponent<Collider>())
+                GetComponent<Collider>().isTrigger = false;
         }
 
         #endregion

@@ -42,9 +42,9 @@ namespace DaggerfallWorkshop.Demo
                 return;
 
             // Change to night
-            if (dfUnity.WorldTime.IsNight && light.enabled)
+            if (dfUnity.WorldTime.IsNight && GetComponent<Light>().enabled)
             {
-                light.enabled = false;
+                GetComponent<Light>().enabled = false;
                 if (OtherLights != null)
                 {
                     for (int i = 0; i < OtherLights.Length; i++)
@@ -53,9 +53,9 @@ namespace DaggerfallWorkshop.Demo
             }
 
             // Change to day
-            if (!dfUnity.WorldTime.IsNight && !light.enabled)
+            if (!dfUnity.WorldTime.IsNight && !GetComponent<Light>().enabled)
             {
-                light.enabled = true;
+                GetComponent<Light>().enabled = true;
                 if (OtherLights != null)
                 {
                     for (int i = 0; i < OtherLights.Length; i++)
@@ -64,7 +64,7 @@ namespace DaggerfallWorkshop.Demo
             }
 
             // Set sun direction and scale
-            if (light.enabled)
+            if (GetComponent<Light>().enabled)
             {
                 // Get value 0-1 for dawn through dusk
                 float dawn = WorldTime.DawnHour * WorldTime.MinutesPerHour;
@@ -73,7 +73,7 @@ namespace DaggerfallWorkshop.Demo
 
                 // Set angle of rotation based on time of day and user value
                 float xrot = 180f * lerp;
-                light.transform.rotation = Quaternion.Euler(xrot, Angle, 0);
+                GetComponent<Light>().transform.rotation = Quaternion.Euler(xrot, Angle, 0);
 
                 // Set light intensity
                 float scale;
@@ -98,7 +98,7 @@ namespace DaggerfallWorkshop.Demo
                 dfUnity = DaggerfallUnity.Instance;
 
             // Must have a light component
-            if (!light)
+            if (!GetComponent<Light>())
                 return false;
 
             // Do nothing if DaggerfallUnity not ready
@@ -113,8 +113,8 @@ namespace DaggerfallWorkshop.Demo
 
         private void SaveLightIntensity()
         {
-            if (light)
-                keyLightIntensity = light.intensity;
+            if (GetComponent<Light>())
+                keyLightIntensity = GetComponent<Light>().intensity;
 
             if (OtherLights != null)
             {
@@ -130,8 +130,8 @@ namespace DaggerfallWorkshop.Demo
 
         void SetLightIntensity(float scale)
         {
-            if (light)
-                light.intensity = keyLightIntensity * scale;
+            if (GetComponent<Light>())
+                GetComponent<Light>().intensity = keyLightIntensity * scale;
 
             if (OtherLights != null)
             {

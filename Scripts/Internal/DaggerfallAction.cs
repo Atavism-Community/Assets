@@ -78,9 +78,9 @@ namespace DaggerfallWorkshop
             currentState = ActionState.Playing;
 
             // Start playing sound if flagged and ready
-            if (PlaySound && ActionSoundID > 0 && audio)
+            if (PlaySound && ActionSoundID > 0 && GetComponent<AudioSource>())
             {
-                audio.Play();
+                GetComponent<AudioSource>().Play();
             }
 
             // Play next action in chain

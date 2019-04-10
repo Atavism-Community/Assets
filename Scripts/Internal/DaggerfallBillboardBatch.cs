@@ -111,9 +111,9 @@ namespace DaggerfallWorkshop
 
             // Assign renderer properties
             // Turning off receive shadows to prevent self-shadowing
-            renderer.sharedMaterial = atlasMaterial;
-            renderer.castShadows = CastShadows;
-            renderer.receiveShadows = false;
+            GetComponent<Renderer>().sharedMaterial = atlasMaterial;
+            GetComponent<Renderer>().castShadows = CastShadows;
+            GetComponent<Renderer>().receiveShadows = false;
 
             NatureMaterial = archive;
             currentArchive = archive;
